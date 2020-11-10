@@ -33,7 +33,7 @@ fi
 ## 加入计划任务
 if [ `grep -c '/opt/sync-time.sh' /etc/crontab` -eq '0' ];
 then
-    echo '* * * * * root /opt/sync-time.sh' >> /etc/crontab
+    echo '0 * * * * root /opt/sync-time.sh' >> /etc/crontab
     echo 'add task for sync time'
 else
     echo 'sync time task exist'
