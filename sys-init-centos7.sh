@@ -9,7 +9,8 @@ crontab /etc/crontab
 
 # 设置同步时区操作
 yum install -y ntp ntpdate
-if [! -f '/opt/sync-time.sh'];
+# 方括号后面必须要有空格
+if [ ! -f '/opt/sync-time.sh' ]
 then
     echo '
         #! /bin/bash
