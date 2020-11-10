@@ -3,6 +3,7 @@ echo 'system init'
 echo '==========='
 yum update -y
 yum install -y vim
+yum install -y git
 
 # 初始化 crontab
 crontab /etc/crontab
