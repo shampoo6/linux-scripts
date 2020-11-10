@@ -9,7 +9,7 @@ crontab /etc/crontab
 
 # 设置同步时区操作
 yum install -y ntp ntpdate
-if [! -f '/opt/sync-time.sh']
+if [! -f '/opt/sync-time.sh'];
 then
     echo '
         #! /bin/bash
@@ -30,9 +30,12 @@ fi
 /opt/sync-time.sh
 
 ## 加入计划任务
-if [ `grep -c '/opt/sync-time.sh' /etc/crontab` -eq '0' ]
+if [ `grep -c '/opt/sync-time.sh' /etc/crontab` -eq '0' ];
 then
     echo '* * * * * root /opt/sync-time.sh' >> /etc/crontab
+    echo 'add task for sync time'
+else
+    echo 'sync time task exist'
 fi
 
 echo 'system init over'
