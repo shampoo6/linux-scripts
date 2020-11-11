@@ -16,6 +16,11 @@ git clone https://github.com/ZZROTDesign/docker-clean.git /opt/docker-clean
 chmod -R 777 /opt/docker-clean
 echo 'docker-clean install over'
 
+# 由于 docker-clean 在执行 run 以后，会清除掉所有停止的 docker容器，如果有数据库容器的话，而且如果是停止状态的话，数据库就会被清掉，非常危险
+# docker-clean 作者说后续 golang 的 release 版本会增加一个 exclude 排除列表，以后再看
+
+# 可以自行选择关闭该任务
+
 if [ `grep -c '/opt/docker-clean' /etc/crontab` -eq '0' ]
 then
     echo '*/30 * * * * root /opt/docker-clean/docker-clean run' >> /etc/crontab
