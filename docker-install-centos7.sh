@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 # CentOS7 环境下的docker安装
 
