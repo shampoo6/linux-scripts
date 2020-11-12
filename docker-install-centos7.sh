@@ -21,28 +21,33 @@ echo 'docker-clean install over'
 
 # 可以自行选择关闭该任务
 
-if [ `grep -c '/opt/docker-clean' /etc/crontab` -eq '0' ]
-then
-    echo '*/30 * * * * root /opt/docker-clean/docker-clean run' >> /etc/crontab
-    echo 'start docker-clean task'
-else
-    echo 'docker-clean task exist'
-fi
+# if [ `grep -c '/opt/docker-clean' /etc/crontab` -eq '0' ]
+# then
+#     echo '*/30 * * * * root /opt/docker-clean/docker-clean run' >> /etc/crontab
+#     echo 'start docker-clean task'
+# else
+#     echo 'docker-clean task exist'
+# fi
 
 # 设置镜像地址
 # 发现设置镜像地址后，速度反而变慢了
-# echo 'start set docker mirrors'
-# echo '{
-#   "registry-mirrors": [
-#     "https://xznw8bfn.mirror.aliyuncs.com",
-#     "https://hub-mirror.c.163.com",
-#     "https://mirror.baidubce.com"
-#   ]
-# }' > /etc/docker/daemon.json
-# chmod -R 777 /etc/docker/daemon.json
-# systemctl daemon-reload
-# systemctl restart docker
-# echo 'set docker mirrors over'
+echo 'start set docker mirrors'
+echo '{
+  "registry-mirrors": [
+    "https://xznw8bfn.mirror.aliyuncs.com",
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com"
+  ]
+}' > /etc/docker/daemon.json
+chmod -R 777 /etc/docker/daemon.json
+systemctl daemon-reload
+systemctl restart docker
+echo 'set docker mirrors over'
+
+# 安装 docker-compose 二进制包
+curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+# 获取执行权限
+chmod +x /usr/local/bin/docker-compose
 
 # 运行 demo 如果执行成功说明安装完成
 docker run hello-world

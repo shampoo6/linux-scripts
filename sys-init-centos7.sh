@@ -14,7 +14,7 @@ yum install -y ntp ntpdate
 if [ ! -f '/opt/sync-time.sh' ]
 then
     echo '
-        #! /bin/bash
+        #! /bin/sh
         ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime # 设置时区
         service ntpd stop # 停止同步服务
         ntpdate cn.pool.ntp.org # 在线同步时间
@@ -38,6 +38,32 @@ then
     echo 'add task for sync time'
 else
     echo 'sync time task exist'
+fi
+
+# 创建清理缓存脚本
+if [ ! -f '/opt/cache-clean.sh' ]
+then
+    echo '
+        #! /bin/sh
+        date
+        sync && echo 1 > /proc/sys/vm/drop_caches
+        sync && echo 2 > /proc/sys/vm/drop_caches
+        sync && echo 3 > /proc/sys/vm/drop_caches
+        echo "cache-clean over"
+    ' > /opt/cache-clean.sh
+    chmod -R 777 /opt/cache-clean.sh
+    echo 'create cache-clean.sh'
+else
+    echo 'cache-clean.sh exist'
+fi
+
+## 加入计划任务
+if [ `grep -c '/opt/cache-clean.sh' /etc/crontab` -eq '0' ];
+then
+    echo '0 * * * * root /opt/cache-clean.sh' >> /etc/crontab
+    echo 'add task for cache-clean'
+else
+    echo 'cache-clean task exist'
 fi
 
 echo 'system init over'
