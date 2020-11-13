@@ -31,19 +31,20 @@ echo 'docker-clean install over'
 
 # 设置镜像地址
 # 发现设置镜像地址后，速度反而变慢了
-echo 'start set docker mirrors'
-echo '{
-  "registry-mirrors": [
-    "https://xznw8bfn.mirror.aliyuncs.com",
-    "https://hub-mirror.c.163.com",
-    "https://mirror.baidubce.com"
-  ]
-}' > /etc/docker/daemon.json
-chmod -R 777 /etc/docker/daemon.json
-systemctl daemon-reload
-systemctl restart docker
-echo 'set docker mirrors over'
+# echo 'start set docker mirrors'
+# echo '{
+#   "registry-mirrors": [
+#     "https://xznw8bfn.mirror.aliyuncs.com",
+#     "https://hub-mirror.c.163.com",
+#     "https://mirror.baidubce.com"
+#   ]
+# }' > /etc/docker/daemon.json
+# chmod -R 777 /etc/docker/daemon.json
+# systemctl daemon-reload
+# systemctl restart docker
+# echo 'set docker mirrors over'
 
+echo 'start install docker-compose'
 # 安装 docker-compose 二进制包
 curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 # 获取执行权限
