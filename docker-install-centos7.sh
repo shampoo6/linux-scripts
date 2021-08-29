@@ -54,4 +54,4 @@ curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-c
 chmod +x /usr/local/bin/docker-compose
 
 # 运行 demo 如果执行成功说明安装完成
-docker run hello-world
+# docker run hello-world
