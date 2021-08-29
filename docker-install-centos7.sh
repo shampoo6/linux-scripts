@@ -11,10 +11,10 @@ systemctl enable docker
 systemctl start docker
 
 # 安装docker-clean
-echo 'start clone docker-clean'
-git clone https://github.com/ZZROTDesign/docker-clean.git /opt/docker-clean
-chmod -R 777 /opt/docker-clean
-echo 'docker-clean install over'
+# echo 'start clone docker-clean'
+# git clone https://github.com/ZZROTDesign/docker-clean.git /opt/docker-clean
+# chmod -R 777 /opt/docker-clean
+# echo 'docker-clean install over'
 
 # 由于 docker-clean 在执行 run 以后，会清除掉所有停止的 docker容器，如果有数据库容器的话，而且如果是停止状态的话，数据库就会被清掉，非常危险
 # docker-clean 作者说后续 golang 的 release 版本会增加一个 exclude 排除列表，以后再看
@@ -46,7 +46,10 @@ echo 'docker-clean install over'
 
 echo 'start install docker-compose'
 # 安装 docker-compose 二进制包
-curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+# 官网地址: 
+# curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+# 镜像地址: 
+curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 # 获取执行权限
 chmod +x /usr/local/bin/docker-compose
 
