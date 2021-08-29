@@ -1,5 +1,5 @@
 # 启动一个 mongodb 和一个 mongo-express 服务的配置
-# 使用 root/example 作为 账号/密码 的权限
+# 使用 root/111111 作为 账号/密码 的权限
 version: '3.1'
 
 services:
@@ -9,7 +9,7 @@ services:
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_PASSWORD: 111111
     ports:
       - 27017:27017
 
@@ -20,5 +20,5 @@ services:
       - 8081:8081
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 111111
+      ME_CONFIG_MONGODB_URL: mongodb://root:111111@mongo:27017/
