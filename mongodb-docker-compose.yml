@@ -12,6 +12,9 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: 111111
     ports:
       - 27017:27017
+    # 将容器内的mongodb数据存储目录挂载出来
+    volumes:
+      - /opt/db:/data/db
 
   mongo-express:
     image: mongo-express
